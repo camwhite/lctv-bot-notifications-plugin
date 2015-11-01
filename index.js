@@ -4,14 +4,14 @@ const notifier = require('node-notifier');
 module.exports = [{
 	types: ['message'],
 	regex: /\w/,
-	action: function(chat, stanza) {
+	action: (chat, stanza) => {
     if(!stanza.user.isBot()) {
       notifier.notify({
         title: stanza.user.username,
         message: stanza.message,
         sound: true,
         icon: path.join(__dirname, '../../setup/core/assets/tswift.png'), // absolute path (not balloons) 
-      }, function (err, response) {
+      }, (err, response) => {
         // response is response from notification
         console.log(err);
       });
@@ -19,7 +19,7 @@ module.exports = [{
 	}
 }, {
 	types: ['startup'],
-	action: function(chat, stanza) {
+	action: (chat, stanza) => {
 		console.log( 'Starting the notification plugin' );
 	}
 }];
